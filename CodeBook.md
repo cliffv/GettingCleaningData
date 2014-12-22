@@ -9,9 +9,9 @@ output: html_document
 
 The data that was edited here was taken from the following website: 
 
-- [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones]
+- [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones]. 
 
-The data as given for the for the course has been provided as follows and can be found here:
+It includes information about the units and variable names. The data as given for the for the course has been provided as follows and can be found here:
 
 - [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip]
 
@@ -38,7 +38,14 @@ This includes means and standard deviations with respect to everything including
 7. activity\_labels.txt was read into R and saved as a data frame dfActivity\_type using labels activity_type and activity. 
 8. dfActivity\_type was merged with dfJoinedData using the activity\_type label.
 9. activity_type was removed from dfJoinedData as the variable activity will replace it as it is far more descriptive, instead of integers it describes what the person is doing, e.g., "WALKING" etc.
-10. The underscores are replaced by "-" in the labels, labels were converted to lower case and the activity was turned into a factor variable.
+10. The underscores are replaced by "-" in the labels, labels were converted to lower case and the activity was turned into a factor variable. As activity is one of few variables where we actually edit the values of the data, there resulting values that activity can take are displayed below:
+
+- walking 
+- walking-upstairs 
+- walking-downstairs 
+- sitting  
+- standing          
+- laying            
 
 ### Appropriately labels the data set with descriptive variable names. 
 
@@ -64,9 +71,9 @@ This includes means and standard deviations with respect to everything including
         - replace "\\)", by "-"
         - replace "\\,g)" by "g"
         
--  We have now constructed a tidyset as because each variable we measure is in 1 column (was already the case), each different observation is in a different row and there is 1 table for each type of variable 
+-  We have now constructed a tidyset as because each variable we measure is in 1 column (was already the case), each different observation is in a different row and there is 1 table for each type of variable. Each row is one measurement of an individual of one activity. The types of data are all the same, they are either means or standard deviations, each attribute has its own column.  
 
-13. We save dfJoinedData into dfTidyData and export it as a textfile called tidyDataset1.txt. 
+13. We save dfJoinedData into dfTidyData and export it as a textfile called tidyDataset1.txt. The list of variables can be found in Appendix A. 
 
 ## From the data set in step 4, we create a second, independent tidy data set with the average of each variable per activity per subject.
 
@@ -78,4 +85,121 @@ This includes means and standard deviations with respect to everything including
 
 16. We assign the same labels to dfNewTidy from dfOldTidy with pre-fix "mean-of-" for indices 1:79 and assign without prefix the identifier labels "activity" and "subject" for indices 80 and 81. The labels are now descriptive.
 
-17. We save dfNewTidy into dfTidyData and export it as a textfile called tidyMeans.txt. Once again it is tidy as it only has averages and only one type of data, namely average attribute value per activity per person. The measures are distinct and each one has one column.
+17. We save dfNewTidy into dfTidyData and export it as a textfile called tidyMeans.txt. Once again it is tidy as it only has averages and only one type of data, namely average attribute value per activity per person where each row respresents one specific of one specific individual. The attributes are distinct and each one has one column. The full list of attributes can be found in Appendix B.
+
+## Appendix A: List of Variables dfTidyData  / tidyDataset1.txt. 
+For the full description and for unit description we refer to [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones] and features.txt from [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip].
+
+ [1] "tbodyacc-mean-x"      \t\t\t    "tbodyacc-mean-y"      \t\t\t      "tbodyacc-mean-z"          
+ [4] "tbodyacc-std-x"       \t\t\t      "tbodyacc-std-y"     \t\t\t        "tbodyacc-std-z"           
+ [7] "tgravityacc-mean-x"   \t\t\t      "tgravityacc-mean-y"     \t\t\t    "tgravityacc-mean-z"       
+[10] "tgravityacc-std-x"    \t\t\t      "tgravityacc-std-y"    \t\t\t      "tgravityacc-std-z"        
+[13] "tbodyaccjerk-mean-x"  \t\t\t      "tbodyaccjerk-mean-y" \t\t\t       "tbodyaccjerk-mean-z"      
+[16] "tbodyaccjerk-std-x"   \t\t\t      "tbodyaccjerk-std-y"  \t\t\t       "tbodyaccjerk-std-z"       
+[19] "tbodygyro-mean-x"     \t\t\t      "tbodygyro-mean-y"     \t\t\t      "tbodygyro-mean-z"         
+[22] "tbodygyro-std-x"      \t\t\t      "tbodygyro-std-y"    \t\t\t        "tbodygyro-std-z"          
+[25] "tbodygyrojerk-mean-x" \t\t\t      "tbodygyrojerk-mean-y"   \t\t\t    "tbodygyrojerk-mean-z"     
+[28] "tbodygyrojerk-std-x"  \t\t\t      "tbodygyrojerk-std-y"   \t\t\t     "tbodygyrojerk-std-z"      
+[31] "tbodyaccmag-mean"     \t\t\t      "tbodyaccmag-std"       \t\t\t     "tgravityaccmag-mean"      
+[34] "tgravityaccmag-std"   \t\t\t      "tbodyaccjerkmag-mean"  \t\t\t     "tbodyaccjerkmag-std"      
+[37] "tbodygyromag-mean"    \t\t\t      "tbodygyromag-std"      \t\t\t     "tbodygyrojerkmag-mean"    
+[40] "tbodygyrojerkmag-std" \t\t\t      "fbodyacc-mean-x"       \t\t\t     "fbodyacc-mean-y"          
+[43] "fbodyacc-mean-z"      \t\t\t      "fbodyacc-std-x"        \t\t\t     "fbodyacc-std-y"           
+[46] "fbodyacc-std-z"       \t\t\t      "fbodyacc-meanfreq-x"    \t\t\t    "fbodyacc-meanfreq-y"      
+[49] "fbodyacc-meanfreq-z"  \t\t\t      "fbodyaccjerk-mean-x"   \t\t\t     "fbodyaccjerk-mean-y"      
+[52] "fbodyaccjerk-mean-z"  \t\t\t      "fbodyaccjerk-std-x"    \t\t\t     "fbodyaccjerk-std-y"       
+[55] "fbodyaccjerk-std-z"   \t\t\t      "fbodyaccjerk-meanfreq-x"\t\t\t    "fbodyaccjerk-meanfreq-y"  
+[58] "fbodyaccjerk-meanfreq-z" \t\t\t   "fbodygyro-mean-x"       \t\t\t    "fbodygyro-mean-y"         
+[61] "fbodygyro-mean-z"     \t\t\t      "fbodygyro-std-x"        \t\t\t    "fbodygyro-std-y"          
+[64] "fbodygyro-std-z"      \t\t\t      "fbodygyro-meanfreq-x"  \t\t\t     "fbodygyro-meanfreq-y"     
+[67] "fbodygyro-meanfreq-z"  \t\t\t     "fbodyaccmag-mean"          "fbodyaccmag-std"          
+[70] "fbodyaccmag-meanfreq" \t\t\t      "fbodyaccjerkmag-mean"  \t\t\t     "fbodyaccjerkmag-std"      
+[73] "fbodyaccjerkmag-meanfreq" \t\t\t  "fbodygyromag-mean"      \t\t\t    "fbodygyromag-std"         
+[76] "fbodygyromag-meanfreq"\t\t\t      "fbodygyrojerkmag-mean"  \t\t\t    "fbodygyrojerkmag-std"     
+[79] "fbodygyrojerkmag-meanfreq"\t\t\t  "subject"              \t\t\t      "activity"    
+
+## Appendix B: List of Variables dfNewTidy  /  tidyMeans.txt. 
+Contains means of attribute values per activity per subject. For the full description and for unit description we refer to [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones] and features.txt from [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip]. The difference being that units are now averages per activity for each individual.
+
+names(dfNewTidy)
+ [1] "mean-of-tbodyacc-mean-x"     \n    
+ "mean-of-tbodyacc-mean-y"          
+ [3] "mean-of-tbodyacc-mean-z"     \n    
+ "mean-of-tbodyacc-std-x"           
+ [5] "mean-of-tbodyacc-std-y"      \n   
+ "mean-of-tbodyacc-std-z"           
+ [7] "mean-of-tgravityacc-mean-x"   \n   
+ "mean-of-tgravityacc-mean-y"       
+ [9] "mean-of-tgravityacc-mean-z"  \n    
+ "mean-of-tgravityacc-std-x"        
+[11] "mean-of-tgravityacc-std-y"    \n   
+"mean-of-tgravityacc-std-z"        
+[13] "mean-of-tbodyaccjerk-mean-x" \n   
+"mean-of-tbodyaccjerk-mean-y"      
+[15] "mean-of-tbodyaccjerk-mean-z" \n   
+"mean-of-tbodyaccjerk-std-x"       
+[17] "mean-of-tbodyaccjerk-std-y"   \n   
+"mean-of-tbodyaccjerk-std-z"       
+[19] "mean-of-tbodygyro-mean-x"     \n  
+"mean-of-tbodygyro-mean-y"         
+[21] "mean-of-tbodygyro-mean-z"    \n   
+"mean-of-tbodygyro-std-x"          
+[23] "mean-of-tbodygyro-std-y"      \n  
+"mean-of-tbodygyro-std-z"          
+[25] "mean-of-tbodygyrojerk-mean-x" \n    
+"mean-of-tbodygyrojerk-mean-y"     
+[27] "mean-of-tbodygyrojerk-mean-z"  \n  
+"mean-of-tbodygyrojerk-std-x"      
+[29] "mean-of-tbodygyrojerk-std-y"  \n   
+"mean-of-tbodygyrojerk-std-z"      
+[31] "mean-of-tbodyaccmag-mean"     \n   
+"mean-of-tbodyaccmag-std"          
+[33] "mean-of-tgravityaccmag-mean"  \n   
+"mean-of-tgravityaccmag-std"       
+[35] "mean-of-tbodyaccjerkmag-mean" \n   
+"mean-of-tbodyaccjerkmag-std"      
+[37] "mean-of-tbodygyromag-mean"    \n  
+"mean-of-tbodygyromag-std"         
+[39] "mean-of-tbodygyrojerkmag-mean"\n  
+"mean-of-tbodygyrojerkmag-std"     
+[41] "mean-of-fbodyacc-mean-x"      \n  
+"mean-of-fbodyacc-mean-y"          
+[43] "mean-of-fbodyacc-mean-z"       \n  
+"mean-of-fbodyacc-std-x"           
+[45] "mean-of-fbodyacc-std-y"       \n   
+"mean-of-fbodyacc-std-z"           
+[47] "mean-of-fbodyacc-meanfreq-x"  \n   
+"mean-of-fbodyacc-meanfreq-y"      
+[49] "mean-of-fbodyacc-meanfreq-z" \n    
+"mean-of-fbodyaccjerk-mean-x"      
+[51] "mean-of-fbodyaccjerk-mean-y"  \n   
+"mean-of-fbodyaccjerk-mean-z"      
+[53] "mean-of-fbodyaccjerk-std-x"   \n  
+"mean-of-fbodyaccjerk-std-y"       
+[55] "mean-of-fbodyaccjerk-std-z"   \n   
+"mean-of-fbodyaccjerk-meanfreq-x"  
+[57] "mean-of-fbodyaccjerk-meanfreq-y" \n 
+"mean-of-fbodyaccjerk-meanfreq-z"  
+[59] "mean-of-fbodygyro-mean-x"    \n     
+"mean-of-fbodygyro-mean-y"         
+[61] "mean-of-fbodygyro-mean-z"     \n   
+"mean-of-fbodygyro-std-x"          
+[63] "mean-of-fbodygyro-std-y"       \n  
+"mean-of-fbodygyro-std-z"          
+[65] "mean-of-fbodygyro-meanfreq-x"  \n   
+"mean-of-fbodygyro-meanfreq-y"     
+[67] "mean-of-fbodygyro-meanfreq-z"   \n  
+"mean-of-fbodyaccmag-mean"         
+[69] "mean-of-fbodyaccmag-std"       \n  
+"mean-of-fbodyaccmag-meanfreq"     
+[71] "mean-of-fbodyaccjerkmag-mean"  \n   
+"mean-of-fbodyaccjerkmag-std"      
+[73] "mean-of-fbodyaccjerkmag-meanfreq" \n 
+"mean-of-fbodygyromag-mean"        
+[75] "mean-of-fbodygyromag-std"        \n 
+"mean-of-fbodygyromag-meanfreq"    
+[77] "mean-of-fbodygyrojerkmag-mean"    \n 
+"mean-of-fbodygyrojerkmag-std"     
+[79] "mean-of-fbodygyrojerkmag-meanfreq" \n 
+"subject"        \n                  
+[81] "activity"     
